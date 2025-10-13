@@ -549,7 +549,7 @@
         
         .certificates-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 2rem;
         }
         
@@ -569,7 +569,7 @@
         
         .certificate-image {
             width: 100%;
-            height: 250px;
+            height: 200px;
             background-color: #222;
             display: flex;
             align-items: center;
@@ -589,14 +589,21 @@
         }
         
         .certificate-title {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin-bottom: 0.5rem;
             color: var(--secondary-color);
         }
         
         .certificate-description {
             color: #999;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .certificate-date {
+            color: #777;
+            font-size: 0.8rem;
+            font-style: italic;
         }
         
         /* Certificate Modal */
@@ -1045,7 +1052,7 @@
                 <img src="https://via.placeholder.com/600x400" alt="Fizam Developer">
             </div>
             <div class="about-text" data-aos="fade-left">
-                <p>Seorang remaja berusia 17 tahun dari Bongawan, Sabah, yang mula berkenalan dengan dunia hacking sejak umur 13 tahun. Minat itu membawanya menyelami dunia keselamatan siber, terutama dalam web application hacking dan Capture The Flag (CTF). Walaupun pernah berhenti seketika kerana hilang minat, semangat itu kembali menyala apabila diberi peluang menyertai program NADI X Cybersecurity yang membuka jalan ke pertandingan CTF berskala besar.</p>
+                <p>Seorang remaja berusia 17 tahun dari Bongawan, Sabah, yang mula berkenalan dengan dunia hacking sejak umur 13 tahun. Minat itu membawanya menyelami dunia keselamatan siber, terutama dalam web application hacking dan Capture The Flag (CTF). Walaupun pernah berhenti seketima kerana hilang minat, semangat itu kembali menyala apabila diberi peluang menyertai program NADI X Cybersecurity yang membuka jalan ke pertandingan CTF berskala besar.</p>
                 <p>Pengalaman itu menjadi titik penting — daripada hanya seorang pelajar yang belajar sendiri, kini mampu bersaing di peringkat zon dan meraih tempat ke-2. Namun lebih daripada sekadar kedudukan, perjalanan ini mengajar tentang nilai kerjasama, ketahanan diri, dan keberanian untuk terus mencuba walaupun jalan tidak selalu mudah.</p>
                 <p>Selepas itu, lahirlah HackDev , sebuah pasukan yang diasaskan untuk membawa warisan ini ke hadapan. Bukan sekadar pasukan bertanding, tetapi juga sebagai ruang berkongsi ilmu, membina kesedaran anti-scam, dan mendidik anak muda kampung agar celik siber. Dengan impian untuk menawan tempat pertama dalam CTF akan datang, perjuangan ini diteruskan bukan hanya untuk kemenangan, tetapi untuk membuktikan bahawa bakat dari kampung juga mampu berdiri di pentas besar.</p>
             </div>
@@ -1127,31 +1134,243 @@
     <section id="certificates">
         <h2 class="section-title" data-aos="fade-up">My Certificates</h2>
         <div class="certificates-grid">
+            <!-- Certificate 1 -->
             <div class="certificate-item" data-aos="fade-up" data-aos-delay="100">
                 <div class="certificate-image">
-                    <img src="https://via.placeholder.com/300x250" alt="Certificate 1">
+                    <img src="https://via.placeholder.com/300x200/333333/ffffff?text=Web+Development" alt="Web Development Certificate">
                 </div>
                 <div class="certificate-content">
                     <h3 class="certificate-title">Web Development</h3>
                     <p class="certificate-description">Certificate for completing Web Development course</p>
+                    <p class="certificate-date">Issued: Jan 2023</p>
                 </div>
             </div>
-            <div class="certificate-item" data-aos="fade-up" data-aos-delay="200">
+            
+            <!-- Certificate 2 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="150">
                 <div class="certificate-image">
-                    <img src="https://via.placeholder.com/300x250" alt="Certificate 2">
+                    <img src="https://via.placeholder.com/300x200/444444/ffffff?text=Cybersecurity" alt="Cybersecurity Certificate">
                 </div>
                 <div class="certificate-content">
                     <h3 class="certificate-title">Cybersecurity</h3>
                     <p class="certificate-description">Certificate for completing Cybersecurity course</p>
+                    <p class="certificate-date">Issued: Mar 2023</p>
                 </div>
             </div>
-            <div class="certificate-item" data-aos="fade-up" data-aos-delay="300">
+            
+            <!-- Certificate 3 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="200">
                 <div class="certificate-image">
-                    <img src="https://via.placeholder.com/300x250" alt="Certificate 3">
+                    <img src="https://via.placeholder.com/300x200/555555/ffffff?text=Python+Programming" alt="Python Programming Certificate">
                 </div>
                 <div class="certificate-content">
                     <h3 class="certificate-title">Python Programming</h3>
                     <p class="certificate-description">Certificate for completing Python Programming course</p>
+                    <p class="certificate-date">Issued: May 2023</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 4 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="250">
+                <div class="certificate-image">
+                    <img src="https://via.placeholder.com/300x200/666666/ffffff?text=JavaScript+Advanced" alt="JavaScript Advanced Certificate">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">JavaScript Advanced</h3>
+                    <p class="certificate-description">Advanced JavaScript concepts and techniques</p>
+                    <p class="certificate-date">Issued: Jul 2023</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 5 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="certificate-image">
+                    <img src="https://via.placeholder.com/300x200/777777/ffffff?text=React+JS" alt="React JS Certificate">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">React JS</h3>
+                    <p class="certificate-description">Modern React development and best practices</p>
+                    <p class="certificate-date">Issued: Sep 2023</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 6 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="certificate-image">
+                    <img src="https://via.placeholder.com/300x200/888888/ffffff?text=UI%2FUX+Design" alt="UI/UX Design Certificate">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">UI/UX Design</h3>
+                    <p class="certificate-description">User Interface and User Experience design principles</p>
+                    <p class="certificate-date">Issued: Nov 2023</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 7 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="150">
+                <div class="certificate-image">
+                    <img src="https://via.placeholder.com/300x200/999999/ffffff?text=Database+Management" alt="Database Management Certificate">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Database Management</h3>
+                    <p class="certificate-description">SQL and NoSQL database administration</p>
+                    <p class="certificate-date">Issued: Jan 2024</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 8 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="certificate-image">
+                    <img src="https://via.placeholder.com/300x200/aaaaaa/000000?text=Network+Security" alt="Network Security Certificate">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Network Security</h3>
+                    <p class="certificate-description">Network infrastructure protection and security</p>
+                    <p class="certificate-date">Issued: Mar 2024</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 9 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="250">
+                <div class="certificate-image">
+                    <img src="https://via.placeholder.com/300x200/bbbbbb/000000?text=Cloud+Computing" alt="Cloud Computing Certificate">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Cloud Computing</h3>
+                    <p class="certificate-description">AWS and Azure cloud services fundamentals</p>
+                    <p class="certificate-date">Issued: May 2024</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 10 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="certificate-image">
+                    <img src="https://via.placeholder.com/300x200/cccccc/000000?text=Mobile+Development" alt="Mobile Development Certificate">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Mobile Development</h3>
+                    <p class="certificate-description">Cross-platform mobile app development</p>
+                    <p class="certificate-date">Issued: Jul 2024</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 11 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="certificate-image">
+                    <img src="https://via.placeholder.com/300x200/dddddd/000000?text=DevOps+Fundamentals" alt="DevOps Fundamentals Certificate">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">DevOps Fundamentals</h3>
+                    <p class="certificate-description">CI/CD pipelines and deployment strategies</p>
+                    <p class="certificate-date">Issued: Sep 2024</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 12 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="150">
+                <div class="certificate-image">
+                    <img src="https://via.placeholder.com/300x200/eeeeee/000000?text=Data+Science" alt="Data Science Certificate">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Data Science</h3>
+                    <p class="certificate-description">Data analysis and machine learning basics</p>
+                    <p class="certificate-date">Issued: Nov 2024</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 13 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="certificate-image">
+                    <img src="https://via.placeholder.com/300x200/333333/ffffff?text=Ethical+Hacking" alt="Ethical Hacking Certificate">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Ethical Hacking</h3>
+                    <p class="certificate-description">Penetration testing and security assessment</p>
+                    <p class="certificate-date">Issued: Jan 2025</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 14 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="250">
+                <div class="certificate-image">
+                    <img src="https://via.placeholder.com/300x200/444444/ffffff?text=Blockchain+Basics" alt="Blockchain Basics Certificate">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Blockchain Basics</h3>
+                    <p class="certificate-description">Introduction to blockchain technology</p>
+                    <p class="certificate-date">Issued: Mar 2025</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 15 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="certificate-image">
+                    <img src="https://via.placeholder.com/300x200/555555/ffffff?text=AI+Fundamentals" alt="AI Fundamentals Certificate">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">AI Fundamentals</h3>
+                    <p class="certificate-description">Artificial Intelligence and Machine Learning basics</p>
+                    <p class="certificate-date">Issued: May 2025</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 16 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="certificate-image">
+                    <img src="https://via.placeholder.com/300x200/666666/ffffff?text=Digital+Marketing" alt="Digital Marketing Certificate">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Digital Marketing</h3>
+                    <p class="certificate-description">Online marketing strategies and analytics</p>
+                    <p class="certificate-date">Issued: Jul 2025</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 17 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="150">
+                <div class="certificate-image">
+                    <img src="https://via.placeholder.com/300x200/777777/ffffff?text=Project+Management" alt="Project Management Certificate">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Project Management</h3>
+                    <p class="certificate-description">Agile and Scrum methodologies</p>
+                    <p class="certificate-date">Issued: Sep 2025</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 18 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="certificate-image">
+                    <img src="https://via.placeholder.com/300x200/888888/ffffff?text=Linux+Administration" alt="Linux Administration Certificate">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Linux Administration</h3>
+                    <p class="certificate-description">Linux server management and configuration</p>
+                    <p class="certificate-date">Issued: Nov 2025</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 19 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="250">
+                <div class="certificate-image">
+                    <img src="https://via.placeholder.com/300x200/999999/ffffff?text=Web+Security" alt="Web Security Certificate">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Web Security</h3>
+                    <p class="certificate-description">OWASP top 10 and web application security</p>
+                    <p class="certificate-date">Issued: Jan 2026</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 20 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="certificate-image">
+                    <img src="https://via.placeholder.com/300x200/aaaaaa/000000?text=CTF+Expert" alt="CTF Expert Certificate">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">CTF Expert</h3>
+                    <p class="certificate-description">Advanced Capture The Flag techniques</p>
+                    <p class="certificate-date">Issued: Mar 2026</p>
                 </div>
             </div>
         </div>
