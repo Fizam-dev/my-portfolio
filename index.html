@@ -126,6 +126,7 @@
             text-decoration: none;
             display: flex;
             align-items: center;
+            margin-right: auto; /* Logo ke kiri */
         }
         
         .logo span {
@@ -138,6 +139,7 @@
         .nav-menu {
             display: flex;
             list-style: none;
+            margin-left: auto; /* Menu ke kanan */
         }
         
         .nav-item {
@@ -176,6 +178,7 @@
             justify-content: space-between;
             width: 30px;
             height: 21px;
+            margin-left: 1rem; /* Hamburger ke kanan */
         }
         
         .bar {
@@ -384,6 +387,24 @@
             align-items: center;
         }
         
+        .about-image {
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
         .about-text {
             font-size: 1.1rem;
             line-height: 1.8;
@@ -517,6 +538,114 @@
         
         .gallery-link:hover {
             color: #999;
+        }
+        
+        /* Certificate Section */
+        #certificates {
+            background-color: #0a0a0a;
+            border-radius: 10px;
+            margin: 4rem auto;
+        }
+        
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .certificate-item {
+            background-color: #111;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .certificate-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+        
+        .certificate-image {
+            width: 100%;
+            height: 250px;
+            background-color: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .certificate-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .certificate-content {
+            padding: 1.5rem;
+        }
+        
+        .certificate-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .certificate-description {
+            color: #999;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Certificate Modal */
+        .certificate-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .certificate-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .modal-close:hover {
+            color: #aaa;
         }
         
         /* Contact Section */
@@ -673,7 +802,8 @@
                 font-size: 1.8rem;
             }
             
-            .gallery-grid {
+            .gallery-grid,
+            .certificates-grid {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
         }
@@ -698,15 +828,18 @@
             .nav-menu {
                 position: fixed;
                 left: -100%;
-                top: 80px;
+                top: 0;
                 gap: 0;
                 flex-direction: column;
                 background-color: var(--primary-color);
                 width: 100%;
+                height: 100vh; /* Full screen */
                 text-align: center;
                 transition: 0.3s;
                 box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
                 padding: 2rem 0;
+                z-index: 999;
+                justify-content: center;
             }
             
             .nav-menu.active {
@@ -775,7 +908,8 @@
                 font-size: 2rem;
             }
             
-            .gallery-grid {
+            .gallery-grid,
+            .certificates-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -805,12 +939,6 @@
     </style>
 </head>
 <body>
-  
-    </div>
-  </div>
-
-</div>
-
     <!-- Loading Screen -->
     <div id="loading-screen">
         <div class="loader">
@@ -828,6 +956,7 @@
                 <li class="nav-item"><a href="#intro" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="#gallery" class="nav-link">Project</a></li>
+                <li class="nav-item"><a href="#certificates" class="nav-link">Certificate</a></li>
                 <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
             <div class="hamburger">
@@ -912,21 +1041,23 @@
     <section id="about">
         <h2 class="section-title" data-aos="fade-up">About Me</h2>
         <div class="about-content">
-            <div class="about-text" data-aos="fade-right">
+            <div class="about-image" data-aos="fade-right">
+                <img src="https://via.placeholder.com/600x400" alt="Fizam Developer">
+            </div>
+            <div class="about-text" data-aos="fade-left">
                 <p>Seorang remaja berusia 17 tahun dari Bongawan, Sabah, yang mula berkenalan dengan dunia hacking sejak umur 13 tahun. Minat itu membawanya menyelami dunia keselamatan siber, terutama dalam web application hacking dan Capture The Flag (CTF). Walaupun pernah berhenti seketika kerana hilang minat, semangat itu kembali menyala apabila diberi peluang menyertai program NADI X Cybersecurity yang membuka jalan ke pertandingan CTF berskala besar.</p>
                 <p>Pengalaman itu menjadi titik penting — daripada hanya seorang pelajar yang belajar sendiri, kini mampu bersaing di peringkat zon dan meraih tempat ke-2. Namun lebih daripada sekadar kedudukan, perjalanan ini mengajar tentang nilai kerjasama, ketahanan diri, dan keberanian untuk terus mencuba walaupun jalan tidak selalu mudah.</p>
                 <p>Selepas itu, lahirlah HackDev , sebuah pasukan yang diasaskan untuk membawa warisan ini ke hadapan. Bukan sekadar pasukan bertanding, tetapi juga sebagai ruang berkongsi ilmu, membina kesedaran anti-scam, dan mendidik anak muda kampung agar celik siber. Dengan impian untuk menawan tempat pertama dalam CTF akan datang, perjuangan ini diteruskan bukan hanya untuk kemenangan, tetapi untuk membuktikan bahawa bakat dari kampung juga mampu berdiri di pentas besar.</p>
             </div>
-            <div class="skills-grid" data-aos="fade-left">
-                <div class="skill-item">
-                    <h3 class="skill-title"><i class="fas fa-code"></i> Frontend Development</h3>
-                    <p class="skill-description">HTML, CSS, JavaScript, Canva, Responsive Design</p>
-                </div>
-                <div class="skill-item">
-                    <h3 class="skill-title"><i class="fab fa-linux"></i> CyberSecurity</h3>
-                    <p class="skill-description">Web Exploit,OSINT,Network</p>
-                </div>
-                </div>
+        </div>
+        <div class="skills-grid" data-aos="fade-up">
+            <div class="skill-item">
+                <h3 class="skill-title"><i class="fas fa-code"></i> Frontend Development</h3>
+                <p class="skill-description">HTML, CSS, JavaScript, Canva, Responsive Design</p>
+            </div>
+            <div class="skill-item">
+                <h3 class="skill-title"><i class="fab fa-linux"></i> CyberSecurity</h3>
+                <p class="skill-description">Web Exploit,OSINT,Network</p>
             </div>
         </div>
     </section>
@@ -992,18 +1123,62 @@
         </div>
     </section>
 
+    <!-- Certificate Section -->
+    <section id="certificates">
+        <h2 class="section-title" data-aos="fade-up">My Certificates</h2>
+        <div class="certificates-grid">
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="certificate-image">
+                    <img src="https://via.placeholder.com/300x250" alt="Certificate 1">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Web Development</h3>
+                    <p class="certificate-description">Certificate for completing Web Development course</p>
+                </div>
+            </div>
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="certificate-image">
+                    <img src="https://via.placeholder.com/300x250" alt="Certificate 2">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Cybersecurity</h3>
+                    <p class="certificate-description">Certificate for completing Cybersecurity course</p>
+                </div>
+            </div>
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="certificate-image">
+                    <img src="https://via.placeholder.com/300x250" alt="Certificate 3">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Python Programming</h3>
+                    <p class="certificate-description">Certificate for completing Python Programming course</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificate Modal -->
+    <div class="certificate-modal" id="certificateModal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <img id="modalImage" src="" alt="Certificate">
+        </div>
+    </div>
+
     <!-- Contact Section -->
     <section id="contact">
-        <h2 class="section-title" data-aos="fade-up">Contact</h2>
-        <div class="contact-content" data-aos="fade-up">
-            <div class="contact-info">
-                <p class="contact-text">Jika ingin menghubungi saya, boleh hubungi saya di:</p>
+        <h2 class="section-title" data-aos="fade-up">Contact Me</h2>
+        <div class="contact-content">
+            <p class="contact-text" data-aos="fade-up">Jika anda berminat untuk berkolaborasi atau ingin bertanya mengenai perkhidmatan saya, jangan ragu untuk menghubungi saya melalui telefon atau media sosial.</p>
+            <div class="contact-info" data-aos="fade-up">
                 <div class="contact-details">
-                    <div class="contact-phone">
-                        <i class="fas fa-phone"></i>
-                        <span><a href="https://wa.link/wwzpen" class="hyper-link">+6010-274 0750</a></span>
+                    <div class="contact-phone" data-aos="zoom-in">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+60 11-1111 1111</span>
                     </div>
-                    <p class="contact-tiktok">atau boleh kunjungi kami di <a href="https://www.tiktok.com/@fizam.dev_2158?is_from_webapp=1&sender_device=pc" target="_blank">TikTok kami</a></p>
+                    <div class="contact-tiktok" data-aos="zoom-in" data-aos-delay="100">
+                        <p>Follow saya di TikTok: <a href="https://www.tiktok.com/@fizam.dev" target="_blank">@fizam.dev</a></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1013,19 +1188,20 @@
     <footer>
         <div class="footer-content">
             <div class="social-links">
-                <a href="https://github.com/Fizam-dev" class="social-link"><i class="fab fa-github"></i></a>
-                <a href="https://wa.link/wwzpen" class="social-link"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://www.tiktok.com/@fizam.dev_2158?is_from_webapp=1&sender_device=pc" class="social-link"><i class="fab fa-tiktok"></i></a>
+                <a href="https://github.com/Fizam-dev" class="social-link" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.tiktok.com/@fizam.dev" class="social-link" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.instagram.com/fizam.dev/" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
             <nav class="footer-nav">
                 <ul class="footer-menu">
                     <li class="footer-item"><a href="#intro">Home</a></li>
                     <li class="footer-item"><a href="#about">About</a></li>
-                    <li class="footer-item"><a href="#gallery">Gallery</a></li>
+                    <li class="footer-item"><a href="#gallery">Project</a></li>
+                    <li class="footer-item"><a href="#certificates">Certificate</a></li>
                     <li class="footer-item"><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-            <p class="copyright">© Fizam.dev | HackDev</p>
+            <p class="copyright">&copy; 2024 Fizam.dev. All rights reserved.</p>
         </div>
     </footer>
 
@@ -1034,109 +1210,72 @@
     <script>
         // Initialize AOS
         AOS.init({
-            duration: 800,
+            duration: 1000,
             once: true,
-            offset: 100,
+            offset: 100
         });
 
-        // Typewriter Effect
-        const texts = [
-            "Front-end Developer", 
-            "UI/UX Designer",
-            "Web Developer",
-            "IT Student",
-            "CTF Player"
-        ];
-        let textIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        let typingSpeed = 100;
-        
-        function typeWriter() {
-            const currentText = texts[textIndex];
-            const typewriterElement = document.getElementById('typewriter');
-            
-            if (isDeleting) {
-                // Deleting text
-                typewriterElement.textContent = currentText.substring(0, charIndex - 1);
-                charIndex--;
-                typingSpeed = 50;
-            } else {
-                // Writing text
-                typewriterElement.textContent = currentText.substring(0, charIndex + 1);
-                charIndex++;
-                typingSpeed = 100;
-            }
-            
-            // Check if current text is complete
-            if (!isDeleting && charIndex === currentText.length) {
-                isDeleting = true;
-                typingSpeed = 1000; // Pause at the end of typing
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                textIndex++;
-                if (textIndex === texts.length) textIndex = 0;
-                typingSpeed = 500; // Pause before starting next text
-            }
-            
-            setTimeout(typeWriter, typingSpeed);
-        }
-        
-        // Start typewriter effect after page loads
-        window.addEventListener('load', () => {
-            setTimeout(typeWriter, 2000);
-        });
-
-        // Loading Screen Animation
+        // Loading Screen
         document.addEventListener('DOMContentLoaded', function() {
             const loadingScreen = document.getElementById('loading-screen');
             const percentage = document.getElementById('percentage');
             
             let progress = 0;
             const interval = setInterval(() => {
-                progress += Math.floor(Math.random() * 5) + 1;
-                if (progress >= 100) {
-                    progress = 100;
+                progress += Math.floor(Math.random() * 10) + 1;
+                if (progress > 100) progress = 100;
+                percentage.textContent = `${progress}%`;
+                
+                if (progress === 100) {
                     clearInterval(interval);
-                    
-                    percentage.textContent = progress + '%';
-                    
                     setTimeout(() => {
                         loadingScreen.style.opacity = '0';
                         setTimeout(() => {
                             loadingScreen.style.display = 'none';
                         }, 500);
                     }, 500);
-                } else {
-                    percentage.textContent = progress + '%';
                 }
-            }, 50);
+            }, 100);
         });
 
-        // Hamburger Menu Toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-        
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
+        // Typewriter Effect
+        const typewriterText = document.getElementById('typewriter');
+        const texts = ['Front-end Developer', 'CyberSecurity Enthusiast', 'Web Designer'];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 100;
+
+        function typeWriter() {
+            const currentText = texts[textIndex];
             
-            // Prevent body scrolling when menu is open
-            if (navMenu.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
+            if (isDeleting) {
+                typewriterText.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+                typingSpeed = 50;
             } else {
-                document.body.style.overflow = 'auto';
+                typewriterText.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+                typingSpeed = 100;
             }
-        });
-        
-        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }));
+            
+            if (!isDeleting && charIndex === currentText.length) {
+                isDeleting = true;
+                typingSpeed = 1500; // Pause at the end
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                typingSpeed = 500; // Pause before starting next text
+            }
+            
+            setTimeout(typeWriter, typingSpeed);
+        }
+
+        // Start the typewriter effect after loading
+        setTimeout(typeWriter, 1500);
 
         // Navbar Scroll Effect
-        window.addEventListener('scroll', () => {
+        window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
@@ -1145,9 +1284,52 @@
             }
         });
 
-        // Smooth scrolling for navigation links
+        // Hamburger Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
+
+        // Certificate Modal
+        const certificateItems = document.querySelectorAll('.certificate-item');
+        const certificateModal = document.getElementById('certificateModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalClose = document.querySelector('.modal-close');
+
+        certificateItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const imgSrc = this.querySelector('img').src;
+                modalImage.src = imgSrc;
+                certificateModal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            });
+        });
+
+        modalClose.addEventListener('click', function() {
+            certificateModal.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Enable scrolling
+        });
+
+        // Close modal when clicking outside the image
+        certificateModal.addEventListener('click', function(e) {
+            if (e.target === certificateModal) {
+                certificateModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 
                 const targetId = this.getAttribute('href');
