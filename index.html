@@ -462,8 +462,8 @@
         
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
         }
         
         .gallery-item {
@@ -472,74 +472,33 @@
             overflow: hidden;
             transition: var(--transition);
             position: relative;
+            aspect-ratio: 1 / 1;
         }
         
         .gallery-item:hover {
-            transform: translateY(-10px);
+            transform: scale(1.03);
             box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
         }
         
         .gallery-image {
             width: 100%;
-            height: 250px;
+            height: 100%;
             background-color: #222;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            color: var(--secondary-color);
+            overflow: hidden;
         }
         
-        .gallery-content {
-            padding: 1.5rem;
-        }
-        
-        .gallery-title {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--secondary-color);
-        }
-        
-        .gallery-description {
-            color: #999;
-            margin-bottom: 1.5rem;
-        }
-        
-        .gallery-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .gallery-tag {
-            background-color: #222;
-            color: #ccc;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-        
-        .gallery-links {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .gallery-link {
-            color: var(--secondary-color);
-            text-decoration: none;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             transition: var(--transition);
         }
         
-        .gallery-link i {
-            margin-right: 0.5rem;
-        }
-        
-        .gallery-link:hover {
-            color: #999;
+        .gallery-item:hover .gallery-image img {
+            transform: scale(1.1);
         }
         
         /* Certificate Section */
@@ -964,7 +923,7 @@
             <ul class="nav-menu">
                 <li class="nav-item"><a href="#intro" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="#gallery" class="nav-link">Project</a></li>
+                <li class="nav-item"><a href="#gallery" class="nav-link">Gallery</a></li>
                 <li class="nav-item"><a href="#certificates" class="nav-link">Certificate</a></li>
                 <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
@@ -1067,8 +1026,64 @@
 
     <!-- Gallery Section -->
     <section id="gallery">
-        <h2 class="section-title" data-aos="fade-up">My Project</h2>
-       
+        <h2 class="section-title" data-aos="fade-up">My Gallery</h2>
+        <div class="gallery-grid">
+            <!-- Gallery Item 1 -->
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="gallery-image">
+                    <img src="https://via.placeholder.com/300" alt="Project 1">
+                </div>
+            </div>
+            
+            <!-- Gallery Item 2 -->
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="150">
+                <div class="gallery-image">
+                    <img src="https://via.placeholder.com/300" alt="Project 2">
+                </div>
+            </div>
+            
+            <!-- Gallery Item 3 -->
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="gallery-image">
+                    <img src="https://via.placeholder.com/300" alt="Project 3">
+                </div>
+            </div>
+            
+            <!-- Gallery Item 4 -->
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="250">
+                <div class="gallery-image">
+                    <img src="https://via.placeholder.com/300" alt="Project 4">
+                </div>
+            </div>
+            
+            <!-- Gallery Item 5 -->
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="gallery-image">
+                    <img src="https://via.placeholder.com/300" alt="Project 5">
+                </div>
+            </div>
+            
+            <!-- Gallery Item 6 -->
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="350">
+                <div class="gallery-image">
+                    <img src="https://via.placeholder.com/300" alt="Project 6">
+                </div>
+            </div>
+            
+            <!-- Gallery Item 7 -->
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="400">
+                <div class="gallery-image">
+                    <img src="https://via.placeholder.com/300" alt="Project 7">
+                </div>
+            </div>
+            
+            <!-- Gallery Item 8 -->
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="450">
+                <div class="gallery-image">
+                    <img src="https://via.placeholder.com/300" alt="Project 8">
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Certificate Section -->
@@ -1146,80 +1161,6 @@
                     <p class="certificate-date">28.06.2025</p>
                 </div>
             </div>
-            
-            <!-- Certificate 7 -->
-            <div class="certificate-item" data-aos="fade-up" data-aos-delay="150">
-                <div class="certificate-image">
-                    <img src="2025-7-10.png" alt="">
-                </div>
-                <div class="certificate-content">
-                    <h3 class="certificate-title">Webinar NADI X CyberSecurity</h3>
-                    <p class="certificate-description">Webinar: Dari Serangan Siber Ke Pemulihan</p>
-                     <p class="certificate-description">Asas Tindak Balas Insiden & Forensik Digital</p>
-                    <p class="certificate-date">10.07.2025</p>
-                </div>
-            </div>
-            
-            <!-- Certificate 8 -->
-            <div class="certificate-item" data-aos="fade-up" data-aos-delay="200">
-                <div class="certificate-image">
-                    <img src="24-7.png" alt="">
-                </div>
-                <div class="certificate-content">
-                    <h3 class="certificate-title">Webinar NADI X CyberSecurity</h3>
-                    <p class="certificate-description">Webinar: Keselamatan Akaun Media Sosial</p>
-                     <p class="certificate-description">Bagaimana Phising Boleh Mengambil Alih Akaun Anda?</p>
-                    <p class="certificate-date">24.07.2025</p>
-                </div>
-            </div>
-            
-            <!-- Certificate 9 -->
-            <div class="certificate-item" data-aos="fade-up" data-aos-delay="250">
-                <div class="certificate-image">
-                    <img src="2025-8-14 .png" alt="">
-                </div>
-                <div class="certificate-content">
-                    <h3 class="certificate-title">Webinar NADI X CyberSecurity</h3>
-                   <p class="certificate-description">Webinar: Selamatkah Telefon Anda Daripada Ancaman</p>
-                    <p class="certificate-date">14.08.2025</p>
-                </div>
-            </div>
-            
-            <!-- Certificate 10 -->
-            <div class="certificate-item" data-aos="fade-up" data-aos-delay="300">
-                <div class="certificate-image">
-                    <img src="28-8.png" alt="">
-                </div>
-                <div class="certificate-content">
-                    <h3 class="certificate-title">Webinar NADI X CyberSecurity</h3>
-                   <p class="certificate-description">Webinar: Kebenaran Menakutkan Disebalik Dark Web</p>
-                    <p class="certificate-date">28.08.2025</p>
-                </div>
-            </div>
-            
-            <!-- Certificate 11 -->
-            <div class="certificate-item" data-aos="fade-up" data-aos-delay="100">
-                <div class="certificate-image">
-                    <img src="18-9.png" alt="">
-                </div>
-                <div class="certificate-content">
-                    <h3 class="certificate-title">Webinar NADI X CyberSecurity</h3>
-                   <p class="certificate-description">Webinar Sim Swap: Ancaman Siber Kepada Usahawan Slot 1</p>
-                    <p class="certificate-date">18.09.2025</p>
-                </div>
-            </div>
-            
-            <!-- Certificate 12 -->
-            <div class="certificate-item" data-aos="fade-up" data-aos-delay="150">
-                <div class="certificate-image">
-                    <img src="IMG-20250926-WA0087.jpeg" alt="">
-                </div>
-                <div class="certificate-content">
-                    <h3 class="certificate-title">CTF NADI X CYberSecurity</h3>
-                    <p class="certificate-description">Sijil penyertaan dan pencapaian naib johan CTF NADI X CyberSecurity peringkat akhir cohort 1</p>
-                    <p class="certificate-date">25.09.2025</p>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -1234,16 +1175,16 @@
     <!-- Contact Section -->
     <section id="contact">
         <h2 class="section-title" data-aos="fade-up">Contact Me</h2>
-        <div class="contact-content">
-            <p class="contact-text" data-aos="fade-up">Jika anda ingin menghubungi saya,Boleh hubungi saya di nombor di bawah melalui Whatsapp.</p>
-            <div class="contact-info" data-aos="fade-up">
+        <div class="contact-content" data-aos="fade-up">
+            <p class="contact-text">Jika anda mempunyai sebarang pertanyaan atau ingin berkolaborasi, jangan ragu untuk menghubungi saya.</p>
+            <div class="contact-info">
                 <div class="contact-details">
-                    <div class="contact-phone" data-aos="zoom-in">
-                        <a href="https://wa.link/4ps6ha" style="text-decoration: none; color: white;"><i class="fab fa-whatsapp"></i>
-                        <span>Klik Disini!</span></a>
+                    <div class="contact-phone">
+                        <i class="fas fa-phone"></i>
+                        <span>+60 10-960 9893</span>
                     </div>
-                    <div class="contact-tiktok" data-aos="zoom-in" data-aos-delay="100">
-                        <p>Atau boleh Follow saya di TikTok: <a href="https://www.tiktok.com/@fizam.dev_2158" target="_blank">@fizam.dev</a></p>
+                    <div class="contact-tiktok">
+                        <p>Follow saya di TikTok: <a href="https://www.tiktok.com/@fizamcybersec" target="_blank">@fizamcybersec</a></p>
                     </div>
                 </div>
             </div>
@@ -1254,24 +1195,24 @@
     <footer>
         <div class="footer-content">
             <div class="social-links">
-                <a href="https://github.com/Fizam-dev" class="social-link" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://www.tiktok.com/@fizam.dev_2158" class="social-link" target="_blank"><i class="fab fa-tiktok"></i></a>
-                <a href="https://www.instagram.com/fizam.dev/" class="social-link" target="_blank"><i class="fab fa-telegram"></i></a>
+                <a href="https://www.tiktok.com/@fizamcybersec" class="social-link" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://github.com/FizamCyberSec" class="social-link" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/fizamcybersec/" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
             <nav class="footer-nav">
                 <ul class="footer-menu">
-                    <li class="footer-item"><a href="#intro">Home</a></li>
-                    <li class="footer-item"><a href="#about">About</a></li>
-                    <li class="footer-item"><a href="#gallery">Project</a></li>
-                    <li class="footer-item"><a href="#certificates">Certificate</a></li>
-                    <li class="footer-item"><a href="#contact">Contact</a></li>
+                    <li class="footer-item"><a href="#intro" class="hyper-link">Home</a></li>
+                    <li class="footer-item"><a href="#about" class="hyper-link">About</a></li>
+                    <li class="footer-item"><a href="#gallery" class="hyper-link">Gallery</a></li>
+                    <li class="footer-item"><a href="#certificates" class="hyper-link">Certificate</a></li>
+                    <li class="footer-item"><a href="#contact" class="hyper-link">Contact</a></li>
                 </ul>
             </nav>
-            <p class="copyright"><strong style="color: white;">FizamCyberSec_21 | HackDev</strong></p>
+            <p class="copyright">&copy; 2025 FizamCyberSec. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- AOS Library -->
+    <!-- JavaScript -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         // Initialize AOS
@@ -1282,17 +1223,16 @@
         });
 
         // Loading Screen
-        document.addEventListener('DOMContentLoaded', function() {
+        window.addEventListener('load', function() {
+            let percentage = 0;
+            const percentageElement = document.getElementById('percentage');
             const loadingScreen = document.getElementById('loading-screen');
-            const percentage = document.getElementById('percentage');
             
-            let progress = 0;
             const interval = setInterval(() => {
-                progress += Math.floor(Math.random() * 10) + 1;
-                if (progress > 100) progress = 100;
-                percentage.textContent = `${progress}%`;
+                percentage += 1;
+                percentageElement.textContent = percentage + '%';
                 
-                if (progress === 100) {
+                if (percentage >= 100) {
                     clearInterval(interval);
                     setTimeout(() => {
                         loadingScreen.style.opacity = '0';
@@ -1301,12 +1241,41 @@
                         }, 500);
                     }, 500);
                 }
-            }, 100);
+            }, 20);
         });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
 
         // Typewriter Effect
         const typewriterText = document.getElementById('typewriter');
-        const texts = ['Front-end Developer', 'CyberSecurity Student', 'Web Designer', 'science computer student', 'CTF Player'];
+        const texts = [
+            "Front-end Developer",
+            "CyberSecurity Enthusiast",
+            "CTF Player"
+        ];
         let textIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
@@ -1327,7 +1296,7 @@
             
             if (!isDeleting && charIndex === currentText.length) {
                 isDeleting = true;
-                typingSpeed = 1500; // Pause at the end
+                typingSpeed = 1000; // Pause at the end
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 textIndex = (textIndex + 1) % texts.length;
@@ -1337,33 +1306,8 @@
             setTimeout(typeWriter, typingSpeed);
         }
 
-        // Start the typewriter effect after loading
-        setTimeout(typeWriter, 1500);
-
-        // Navbar Scroll Effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Hamburger Menu Toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-
-        hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Close menu when clicking on a link
-        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        }));
+        // Start the typewriter effect after page loads
+        setTimeout(typeWriter, 1000);
 
         // Certificate Modal
         const certificateItems = document.querySelectorAll('.certificate-item');
@@ -1376,16 +1320,15 @@
                 const imgSrc = this.querySelector('img').src;
                 modalImage.src = imgSrc;
                 certificateModal.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Prevent scrolling
+                document.body.style.overflow = 'hidden';
             });
         });
 
         modalClose.addEventListener('click', function() {
             certificateModal.classList.remove('active');
-            document.body.style.overflow = 'auto'; // Enable scrolling
+            document.body.style.overflow = 'auto';
         });
 
-        // Close modal when clicking outside the image
         certificateModal.addEventListener('click', function(e) {
             if (e.target === certificateModal) {
                 certificateModal.classList.remove('active');
