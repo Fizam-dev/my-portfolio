@@ -1066,110 +1066,387 @@
     </section>
 
     <!-- Gallery Section -->
-    <section id="gallery">
-        <h2 class="section-title" data-aos="fade-up">My Gallery</h2>
-       <div class="certificates-grid">
-            <!-- Certificate 1 -->
-            <div class="certificate-item" data-aos="fade-up" data-aos-delay="100">
-                <div class="certificate-image">
-                    <img src="gallery/1.jpeg" alt="">
-                </div>
+  <!-- Gallery Section -->
+<section id="gallery">
+    <h2 class="section-title" data-aos="fade-up">My Gallery</h2>
+    
+    <div class="gallery-container" data-aos="fade-up">
+        <!-- Marquee Container -->
+        <div class="gallery-marquee-container">
+            <div class="gallery-marquee" id="galleryMarquee">
+                <!-- Gambar akan dimasukkan melalui JavaScript -->
             </div>
-            
-            <!-- Certificate 2 -->
-            <div class="certificate-item" data-aos="fade-up" data-aos-delay="150">
-                <div class="certificate-image">
-                    <img src="gallery/10.jpg" alt="">
-                </div>
-            </div>
-            
-            <!-- Certificate 3 -->
-            <div class="certificate-item" data-aos="fade-up" data-aos-delay="200">
-                <div class="certificate-image">
-                    <img src="gallery/11.jpg" alt="">
-                </div>
-            </div>
-            
-            <!-- Certificate 4 -->
-            <div class="certificate-item" data-aos="fade-up" data-aos-delay="250">
-                <div class="certificate-image">
-                    <img src="gallery/12.jpg" alt="">
-                </div>
-            </div>
-            
-            <!-- Certificate 5 -->
-            <div class="certificate-item" data-aos="fade-up" data-aos-delay="300">
-                <div class="certificate-image">
-                    <img src="gallery/13.jpg" alt="">
-                </div>
-            </div>
-            
-            <!-- Certificate 6 -->
-            <div class="certificate-item" data-aos="fade-up" data-aos-delay="100">
-                <div class="certificate-image">
-                    <img src="gallery/14.jpg" alt="">
-                </div>
-            </div>
-            
-            <!-- Certificate 7 -->
-            <div class="certificate-item" data-aos="fade-up" data-aos-delay="150">
-                <div class="certificate-image">
-                    <img src="gallery/15.jpg" alt="">
-                </div>
-            </div>
-            
-            <!-- Certificate 8 -->
-            <div class="certificate-item" data-aos="fade-up" data-aos-delay="200">
-                <div class="certificate-image">
-                    <img src="gallery/16.jpg" alt="">
-                </div>
-            </div>
-            
-            <!-- Certificate 9 -->
-            <div class="certificate-item" data-aos="fade-up" data-aos-delay="250">
-                <div class="certificate-image">
-                    <img src="gallery/17.jpg" alt="">
-                </div>
-            </div>
-            
-            <!-- Certificate 10 -->
-            <div class="certificate-item" data-aos="fade-up" data-aos-delay="300">
-                <div class="certificate-image">
-                    <img src="gallery/18.jpg" alt="">
-                </div>
-            </div>
-            
-            <!-- Certificate 11 -->
-            <div class="certificate-item" data-aos="fade-up" data-aos-delay="100">
-                <div class="certificate-image">
-                    <img src="gallery/19.jpg" alt="">
-                </div>
-            </div>
-              <div class="certificate-item" data-aos="fade-up" data-aos-delay="150">
-                <div class="certificate-image">
-                    <img src="gallery/2.jpg" alt="">
-                </div>
         </div>
-            <!-- Certificate 12 -->
-            <div class="certificate-item" data-aos="fade-up" data-aos-delay="150">
-                <div class="certificate-image">
-                    <img src="gallery/20.jpg" alt="">
-                </div>
-        </div>
-             <div class="certificate-item" data-aos="fade-up" data-aos-delay="150">
-                <div class="certificate-image">
-                    <img src="gallery/21.jpg" alt="">
-                </div>
-        </div>
-    </section>
-
-    <!-- Certificate Modal -->
-    <div class="certificate-modal" id="certificateModal">
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <img id="modalImage" src="" alt="Certificate">
+        
+        <!-- Navigation Dots -->
+        <div class="gallery-dots" id="galleryDots">
+            <!-- Dots akan dimasukkan melalui JavaScript -->
         </div>
     </div>
+</section>
+
+<!-- Gallery Modal -->
+<div class="gallery-modal" id="galleryModal">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <div class="modal-navigation">
+            <button class="modal-nav-btn" id="modalPrevBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <img id="modalImage" src="" alt="Gallery Image">
+            <button class="modal-nav-btn" id="modalNextBtn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        <div class="modal-caption">
+            <p id="modalCaption"></p>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Gallery Section Styles */
+    .gallery-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        padding: 0 1rem;
+    }
+
+    .gallery-marquee-container {
+        overflow: hidden;
+        position: relative;
+        border-radius: 10px;
+        background-color: #111;
+        padding: 1rem 0;
+        margin-bottom: 2rem;
+    }
+
+    .gallery-marquee {
+        display: flex;
+        transition: transform 0.5s ease;
+        gap: 1rem;
+        padding: 0 1rem;
+    }
+
+    .gallery-item {
+        flex: 0 0 auto;
+        width: 300px;
+        height: 200px;
+        border-radius: 8px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+    }
+
+    .gallery-item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .gallery-dots {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 1.5rem;
+    }
+
+    .gallery-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #444;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .gallery-dot.active {
+        background-color: #fff;
+        transform: scale(1.2);
+    }
+
+    .gallery-dot:hover {
+        background-color: #888;
+    }
+
+    /* Gallery Modal Styles */
+    .gallery-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.95);
+        z-index: 2000;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .gallery-modal.active {
+        display: flex;
+        opacity: 1;
+    }
+
+    .gallery-modal .modal-content {
+        max-width: 90%;
+        max-height: 90%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .modal-navigation {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .modal-nav-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-size: 1.5rem;
+    }
+
+    .modal-nav-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .gallery-modal .modal-content img {
+        max-width: 80vw;
+        max-height: 70vh;
+        object-fit: contain;
+        border-radius: 10px;
+    }
+
+    .modal-caption {
+        margin-top: 1rem;
+        text-align: center;
+        color: white;
+        max-width: 600px;
+    }
+
+    .modal-close {
+        position: absolute;
+        top: -50px;
+        right: 0;
+        color: white;
+        font-size: 2.5rem;
+        cursor: pointer;
+        transition: color 0.3s ease;
+        z-index: 2001;
+    }
+
+    .modal-close:hover {
+        color: #aaa;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .gallery-item {
+            width: 250px;
+            height: 170px;
+        }
+        
+        .modal-navigation {
+            gap: 0.5rem;
+        }
+        
+        .modal-nav-btn {
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+        }
+        
+        .gallery-modal .modal-content img {
+            max-width: 95vw;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .gallery-item {
+            width: 200px;
+            height: 140px;
+        }
+        
+        .gallery-dots {
+            flex-wrap: wrap;
+        }
+    }
+</style>
+
+<script>
+    // Gallery Functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        // Sample gallery images - replace with your actual 93 images
+        const galleryImages = [
+            { src: 'gallery/1.jpeg', caption: 'Gallery Image 1' },
+            { src: 'gallery/2.jpg', caption: 'Gallery Image 2' },
+            { src: 'gallery/10.jpg', caption: 'Gallery Image 3' },
+            { src: 'gallery/11.jpg', caption: 'Gallery Image 4' },
+            { src: 'gallery/12.jpg', caption: 'Gallery Image 5' },
+            { src: 'gallery/13.jpg', caption: 'Gallery Image 6' },
+            { src: 'gallery/14.jpg', caption: 'Gallery Image 7' },
+            { src: 'gallery/15.jpg', caption: 'Gallery Image 8' },
+            { src: 'gallery/16.jpg', caption: 'Gallery Image 9' },
+            { src: 'gallery/17.jpg', caption: 'Gallery Image 10' },
+            { src: 'gallery/18.jpg', caption: 'Gallery Image 11' },
+            { src: 'gallery/19.jpg', caption: 'Gallery Image 12' },
+            { src: 'gallery/20.jpg', caption: 'Gallery Image 13' },
+            { src: 'gallery/21.jpg', caption: 'Gallery Image 14' },
+            // Add more images here to reach 93
+        ];
+        
+        // Initialize gallery
+        initGallery(galleryImages);
+    });
+
+    function initGallery(images) {
+        const galleryMarquee = document.getElementById('galleryMarquee');
+        const galleryDots = document.getElementById('galleryDots');
+        const galleryModal = document.getElementById('galleryModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalCaption = document.getElementById('modalCaption');
+        const modalClose = document.querySelector('.gallery-modal .modal-close');
+        const modalPrevBtn = document.getElementById('modalPrevBtn');
+        const modalNextBtn = document.getElementById('modalNextBtn');
+        
+        let currentImageIndex = 0;
+        const imagesPerView = 3; // Number of images visible at once
+        
+        // Create gallery items
+        images.forEach((image, index) => {
+            // Create gallery item
+            const galleryItem = document.createElement('div');
+            galleryItem.className = 'gallery-item';
+            galleryItem.setAttribute('data-index', index);
+            
+            const img = document.createElement('img');
+            img.src = image.src;
+            img.alt = image.caption;
+            
+            galleryItem.appendChild(img);
+            galleryMarquee.appendChild(galleryItem);
+            
+            // Create dot
+            const dot = document.createElement('div');
+            dot.className = 'gallery-dot';
+            if (index === 0) dot.classList.add('active');
+            dot.setAttribute('data-index', index);
+            galleryDots.appendChild(dot);
+            
+            // Add click event to gallery item
+            galleryItem.addEventListener('click', () => {
+                currentImageIndex = index;
+                openModal();
+            });
+            
+            // Add click event to dot
+            dot.addEventListener('click', () => {
+                currentImageIndex = index;
+                updateGalleryView();
+                updateActiveDot();
+            });
+        });
+        
+        // Update gallery view based on current index
+        function updateGalleryView() {
+            const itemWidth = 300 + 16; // width + gap
+            const translateX = -currentImageIndex * itemWidth;
+            galleryMarquee.style.transform = `translateX(${translateX}px)`;
+        }
+        
+        // Update active dot
+        function updateActiveDot() {
+            document.querySelectorAll('.gallery-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentImageIndex);
+            });
+        }
+        
+        // Open modal
+        function openModal() {
+            updateModalImage();
+            galleryModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Close modal
+        function closeModal() {
+            galleryModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Update modal image
+        function updateModalImage() {
+            modalImage.src = images[currentImageIndex].src;
+            modalCaption.textContent = images[currentImageIndex].caption;
+        }
+        
+        // Navigate to previous image
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            updateModalImage();
+            updateGalleryView();
+            updateActiveDot();
+        }
+        
+        // Navigate to next image
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            updateModalImage();
+            updateGalleryView();
+            updateActiveDot();
+        }
+        
+        // Event listeners
+        modalClose.addEventListener('click', closeModal);
+        modalPrevBtn.addEventListener('click', prevImage);
+        modalNextBtn.addEventListener('click', nextImage);
+        
+        // Close modal when clicking outside the image
+        galleryModal.addEventListener('click', function(e) {
+            if (e.target === galleryModal) {
+                closeModal();
+            }
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (galleryModal.classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    closeModal();
+                } else if (e.key === 'ArrowLeft') {
+                    prevImage();
+                } else if (e.key === 'ArrowRight') {
+                    nextImage();
+                }
+            }
+        });
+        
+        // Initialize gallery view
+        updateGalleryView();
+    }
+</script>
 
 
     <!-- Certificate Section -->
