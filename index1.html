@@ -1,0 +1,1852 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fizam.dev | Portfolio</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #000;
+            --secondary-color: #fff;
+            --accent-color: #333;
+            --text-color: #f5f5f5;
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Loading Screen */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loader {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .loader-circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 5px solid transparent;
+            border-top: 5px solid var(--secondary-color);
+            border-radius: 50%;
+            animation: spin 1.5s linear infinite;
+        }
+        
+        .loader-circle:nth-child(2) {
+            border: 5px solid transparent;
+            border-bottom: 5px solid var(--secondary-color);
+            animation: spinReverse 1.8s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes spinReverse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(-360deg); }
+        }
+        
+        #percentage {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-top: 20px;
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            z-index: 1000;
+            transition: var(--transition);
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        
+        .navbar.scrolled {
+            padding: 1rem 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Raleway', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            margin-right: auto; /* Logo ke kiri */
+            z-index: 1001;
+        }
+        
+        .logo span {
+            color: #fff;
+            background: linear-gradient(90deg, #fff, #aaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin-left: auto; /* Menu ke kanan */
+        }
+        
+        .nav-item {
+            margin-left: 2.5rem;
+        }
+        
+        .nav-link {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            margin-left: 1rem; /* Hamburger ke kanan */
+            z-index: 1001;
+        }
+        
+        .bar {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+        
+        /* Sections General */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-family: 'Raleway', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), transparent);
+        }
+        
+        /* Intro Section */
+        #intro {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding-top: 80px;
+            text-align: center;
+        }
+        
+        .intro-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        .intro-greeting {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #aaa;
+        }
+        
+        .intro-name {
+            font-family: 'Raleway', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, #fff, #aaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .typewriter-container {
+            height: 3.5rem;
+            margin-bottom: 2rem;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .typewriter-text {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #ccc;
+            border-right: 3px solid var(--secondary-color);
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--secondary-color); }
+        }
+        
+        .intro-description {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            color: #999;
+            max-width: 600px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--secondary-color);
+            box-shadow: 0 0 0 2px var(--secondary-color);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--secondary-color);
+            box-shadow: 0 0 0 2px var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+        
+        /* Marquee Section */
+        .marquee-container {
+            overflow: hidden;
+            padding: 2rem 0;
+            background-color:  #000;
+            position: relative;
+        }
+        
+        .marquee {
+            display: flex;
+            animation: marqueeScroll 20s linear infinite;
+        }
+        
+        .marquee:hover {
+            animation-play-state: paused;
+        }
+        
+        .marquee-item {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 2rem;
+            transition: var(--transition);
+        }
+        
+        .marquee-item i {
+            font-size: 3.5rem;
+            margin-right: 1rem;
+        }
+        
+        .marquee-item span {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        @keyframes marqueeScroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        
+        /* About Section */
+        #about {
+            background-color: #0a0a0a;
+            border-radius: 10px;
+            margin: 4rem auto;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-image {
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #ccc;
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .skill-item {
+            background-color: #111;
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+        }
+        
+        .skill-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .skill-title i {
+            margin-right: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .skill-description {
+            font-size: 0.9rem;
+            color: #999;
+        }
+        
+        /* Gallery Section */
+        #gallery {
+            background-color: #0a0a0a;
+            border-radius: 10px;
+            margin: 4rem auto;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .gallery-item {
+            background-color: #111;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 250px;
+            background-color: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--secondary-color);
+        }
+        
+        .gallery-content {
+            padding: 1.5rem;
+        }
+        
+        .gallery-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .gallery-description {
+            color: #999;
+            margin-bottom: 1.5rem;
+        }
+        
+        .gallery-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .gallery-tag {
+            background-color: #222;
+            color: #ccc;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .gallery-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .gallery-link {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+        
+        .gallery-link i {
+            margin-right: 0.5rem;
+        }
+        
+        .gallery-link:hover {
+            color: #999;
+        }
+        
+        /* Certificate Section */
+        #certificates {
+            background-color: #0a0a0a;
+            border-radius: 10px;
+            margin: 4rem auto;
+        }
+        
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .certificate-item {
+            background-color: #111;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .certificate-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+        
+        .certificate-image {
+            width: 100%;
+            height: 200px;
+            background-color: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .certificate-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .certificate-content {
+            padding: 1.5rem;
+        }
+        
+        .certificate-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .certificate-description {
+            color: #999;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .certificate-date {
+            color: #777;
+            font-size: 0.8rem;
+            font-style: italic;
+        }
+        
+        /* Certificate Modal */
+        .certificate-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .certificate-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .modal-close:hover {
+            color: #aaa;
+        }
+        
+        /* Contact Section */
+        #contact {
+            background-color: #0a0a0a;
+            border-radius: 10px;
+            margin: 4rem auto;
+            text-align: center;
+        }
+        
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .contact-text {
+            font-size: 1.2rem;
+            color: #ccc;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        
+        .contact-phone {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .contact-phone i {
+            font-size: 2rem;
+        }
+        
+        .contact-tiktok {
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+        
+        .contact-tiktok a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .contact-tiktok a:hover {
+            color: #999;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #0a0a0a;
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #111;
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px);
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+        
+        .footer-nav {
+            margin-bottom: 2rem;
+        }
+        
+        .footer-menu {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-item a {
+            color: #999;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-item a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .copyright {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .nav-container {
+                padding: 0 1.5rem;
+            }
+            
+            section {
+                padding: 5rem 1.5rem;
+            }
+        }
+        
+        @media (max-width: 968px) {
+            .about-content,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .intro-name {
+                font-size: 3rem;
+            }
+            
+            .typewriter-text {
+                font-size: 1.8rem;
+            }
+            
+            .gallery-grid,
+            .certificates-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+            
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
+            }
+            
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 0;
+                gap: 0;
+                flex-direction: column;
+                background-color: var(--primary-color);
+                width: 100%;
+                height: 100vh; /* Full screen */
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 2rem 0;
+                z-index: 999;
+                justify-content: center;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-item {
+                margin: 1.5rem 0;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .footer-menu {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .typewriter-container {
+                height: 2.8rem;
+            }
+            
+            .typewriter-text {
+                font-size: 1.5rem;
+            }
+            
+            .marquee-item {
+                margin: 0 1rem;
+            }
+            
+            .marquee-item i {
+                font-size: 2.5rem;
+            }
+            
+            .marquee-item span {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .intro-name {
+                font-size: 2.5rem;
+            }
+            
+            .typewriter-container {
+                height: 2.5rem;
+            }
+            
+            .typewriter-text {
+                font-size: 1.3rem;
+            }
+            
+            .intro-description {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .gallery-grid,
+            .certificates-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-phone {
+                font-size: 1.2rem;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .social-links {
+                gap: 1rem;
+            }
+            
+            .social-link {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+        }
+        .hyper-link{
+            color: white;
+            text-decoration: none;
+        }
+        .hyper-link:hover {
+            color: grey;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader">
+            <div class="loader-circle"></div>
+            <div class="loader-circle"></div>
+        </div>
+        <div id="percentage">0%</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Fizam<span>CyberSec</span></a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#intro" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li class="nav-item"><a href="#certificates" class="nav-link">Certificate</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Intro Section -->
+    <section id="intro">
+        <div class="intro-content" data-aos="fade-up" data-aos-duration="1000">
+            <h2 class="intro-greeting">Hello Guys, I'm</h2>
+            <h1 class="intro-name">FizamCyberSec</h1>
+            <div class="typewriter-container">
+                <h2 class="typewriter-text" id="typewriter">Front-end Developer</h2>
+            </div>
+            <p class="intro-description"></p>
+            <div class="cta-buttons">
+                <a href="#gallery" class="btn btn-primary">View Gallery</a>
+                <a href="#contact" class="btn btn-secondary">Contact Me</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee Section -->
+    <div class="marquee-container">
+        <div class="marquee">
+            <div class="marquee-item">
+                <i class="fab fa-html5"></i>
+            </div>
+            <div class="marquee-item">
+                <i class="fab fa-css3-alt"></i>
+            </div>
+            <div class="marquee-item">
+                <i class="fab fa-js"></i>
+            </div>
+            <div class="marquee-item">
+                <i class="fab fa-python"></i>
+            </div>
+            <div class="marquee-item">
+                <i class="fab fa-github"></i>
+            </div>
+            <div class="marquee-item">
+                <i class="fab fa-figma"></i>
+            </div>
+            <div class="marquee-item">
+                <i class="fab fa-html5"></i>
+            </div>
+            <div class="marquee-item">
+                <i class="fab fa-css3-alt"></i>
+            </div>
+            <div class="marquee-item">
+                <i class="fab fa-js"></i>
+            </div>
+            <div class="marquee-item">
+                <i class="fab fa-python"></i>
+            </div>
+            <div class="marquee-item">
+                <i class="fab fa-github"></i>
+            </div>
+            <div class="marquee-item">
+                <i class="fab fa-figma"></i>
+            </div>
+             <div class="marquee-item">
+                <i class="fab fa-linux"></i>
+            </div>
+             <div class="marquee-item">
+                <i class="fab fa-git"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title" data-aos="fade-up">About Me</h2>
+        <div class="about-content">
+            <div class="about-image" data-aos="fade-right">
+                <img src="IMG_20250926_191005_873.jpg" alt="Fizam Developer">
+            </div>
+            <div class="about-text" data-aos="fade-left">
+                <p>Hello! Assalamualaikum! Nama Saya Muhammad Syafizam Atau lebih dikenali Sebagai Fizam.</p>
+                <p>Saya Seorang pelajar tingkatan 5 SMK Bongawan pada tahun 2025,saya juga mempunyai minat yang mendalam terhadap dunia <strong>Keselamatan Siber.</strong></p>
+                <p>Berkat semangat saya yang tak pernah padam,kini saya pernah Bertanding dalam Pertandingan CyberSecurity "Capture The Flag(CTF)" Peringkat akhir anjuran NADI X Cybersecurity dan berjaya merangkul naib johan.</p>
+            </div>
+        </div>
+        <div class="skills-grid" data-aos="fade-up">
+            <div class="skill-item">
+                <h3 class="skill-title"><i class="fas fa-code"></i> Frontend Development</h3>
+                <p class="skill-description">HTML, CSS, JavaScript, Canva, Responsive Design</p>
+            </div>
+            <div class="skill-item">
+                <h3 class="skill-title"><i class="fas fa-flag"></i> CyberSecurity</h3>
+                <p class="skill-description">Web Exploit,OSINT,Network,CTF Challenge</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+ <!-- Gallery Section -->
+<section id="gallery">
+    <h2 class="section-title" data-aos="fade-up">My Gallery</h2>
+    
+    <div class="gallery-container" data-aos="fade-up">
+        <!-- Marquee Container -->
+        <div class="gallery-marquee-container">
+            <div class="gallery-marquee" id="galleryMarquee">
+                <!-- Gambar akan dimasukkan melalui JavaScript -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Modal -->
+<div class="gallery-modal" id="galleryModal">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <div class="modal-navigation">
+            <button class="modal-nav-btn" id="modalPrevBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <img id="modalImage" src="" alt="Gallery Image">
+            <button class="modal-nav-btn" id="modalNextBtn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        <div class="modal-caption">
+            <p id="modalCaption"></p>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Gallery Section Styles */
+/* Gallery Section Styles */
+.gallery-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    padding: 0 1rem;
+}
+
+.gallery-marquee-container {
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+    background-color: #111;
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+}
+
+.gallery-marquee {
+    display: flex;
+    animation: galleryMarquee 30s linear infinite;
+    gap: 1rem;
+    padding: 0 1rem;
+}
+
+.gallery-marquee.paused {
+    animation-play-state: paused;
+}
+
+.gallery-item {
+    flex: 0 0 auto;
+    width: 300px;
+    height: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+@keyframes galleryMarquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Gallery Modal Styles */
+.gallery-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.gallery-modal .modal-content {
+    max-width: 90%;
+    max-height: 90%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-navigation {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.modal-nav-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1.5rem;
+}
+
+.modal-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.gallery-modal .modal-content img {
+    max-width: 80vw;
+    max-height: 70vh;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.modal-caption {
+    margin-top: 1rem;
+    text-align: center;
+    color: white;
+    max-width: 600px;
+}
+
+.modal-close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    color: white;
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 2001;
+}
+
+.modal-close:hover {
+    color: #aaa;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .gallery-item {
+        width: 250px;
+        height: 170px;
+    }
+    
+    .modal-navigation {
+        gap: 0.5rem;
+    }
+    
+    .modal-nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .gallery-modal .modal-content img {
+        max-width: 95vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-item {
+        width: 200px;
+        height: 140px;
+    }
+}
+</style>
+
+<script>
+    // Gallery Functionality
+    // Gallery Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Sample gallery images - replace with your actual 93 images
+    const galleryImages = [
+        { src: 'gallery/1.jpeg', caption: 'Gallery Image 1' },
+        { src: 'gallery/2.jpg', caption: 'Gallery Image 2' },
+        { src: 'gallery/10.jpg', caption: 'Gallery Image 3' },
+        { src: 'gallery/11.jpg', caption: 'Gallery Image 4' },
+        { src: 'gallery/12.jpg', caption: 'Gallery Image 5' },
+        { src: 'gallery/13.jpg', caption: 'Gallery Image 6' },
+        { src: 'gallery/14.jpg', caption: 'Gallery Image 7' },
+        { src: 'gallery/15.jpg', caption: 'Gallery Image 8' },
+        { src: 'gallery/16.jpg', caption: 'Gallery Image 9' },
+        { src: 'gallery/17.jpg', caption: 'Gallery Image 10' },
+        { src: 'gallery/18.jpg', caption: 'Gallery Image 11' },
+        { src: 'gallery/19.jpg', caption: 'Gallery Image 12' },
+        { src: 'gallery/20.jpg', caption: 'Gallery Image 13' },
+        { src: 'gallery/21.jpg', caption: 'Gallery Image 14' },
+        { src: 'Untitled7_20250925011930.jpg', caption: 'Gallery Image 15' },
+        { src: 'Untitled6_20250925011815.jpg', caption: 'Gallery Image 16' },
+        { src: 'Untitled5_20250925011644.jpg', caption: 'Gallery Image 17' },
+        { src: 'Untitled4_20250925011535.jpg', caption: 'Gallery Image 18' }, 
+        { src: 'Untitled3_20250925011426.jpg', caption: 'Gallery Image 19' },
+        { src: 'IMG_20250926_191012_802.jpg', caption: 'Gallery Image 20' },
+        { src: 'IMG_20250926_191012_275.jpg', caption: 'Gallery Image 21' },
+        { src: 'IMG_20250926_191006_508.jpg', caption: 'Gallery Image 22' },
+        { src: 'IMG_20250926_191006_114.jpg', caption: 'Gallery Image 23' },
+        { src: 'IMG_20250926_191006_111.jpg', caption: 'Gallery Image 24' },
+        { src: 'IMG_20250926_191005_935.jpg', caption: 'Gallery Image 25' },
+        { src: 'IMG_20250926_191005_914.jpg', caption: 'Gallery Image 26' },
+        { src: 'IMG_20250926_191005_873.jpg', caption: 'Gallery Image 27' },
+        { src: 'IMG_20250926_191005_818.jpg', caption: 'Gallery Image 28' },
+        { src: 'IMG_20250926_191005_709.jpg', caption: 'Gallery Image 29' },
+        { src: 'IMG_20250926_191005_696.jpg', caption: 'Gallery Image 30' },
+        { src: 'IMG_20250926_191001_014.jpg', caption: 'Gallery Image 31' },
+        { src: 'IMG_20250926_191001_000.jpg', caption: 'Gallery Image 32' },
+        { src: 'IMG_20250926_191000_851.jpg', caption: 'Gallery Image 33' },
+        { src: 'IMG_20250926_191000_830.jpg', caption: 'Gallery Image 34' },
+        { src: 'IMG_20250926_191000_597.jpg', caption: 'Gallery Image 35' },
+        { src: 'IMG_20250926_191000_531.jpg', caption: 'Gallery Image 36' },
+        { src: 'IMG_20250926_191000_466.jpg', caption: 'Gallery Image 37' },
+        { src: 'IMG_20250926_191000_416.jpg', caption: 'Gallery Image 38' },
+        { src: 'IMG_20250926_191000_386.jpg', caption: 'Gallery Image 39' },
+        { src: 'IMG_20250926_190955_673.jpg', caption: 'Gallery Image 40' },
+        { src: 'IMG_20250926_190955_420.jpg', caption: 'Gallery Image 41' },
+        { src: 'IMG_20250926_190955_348.jpg', caption: 'Gallery Image 42' },
+        { src: 'IMG_20250926_190955_321.jpg', caption: 'Gallery Image 43' },
+        { src: 'IMG_20250926_190955_242.jpg', caption: 'Gallery Image 44' },
+        { src: 'IMG_20250926_190955_222.jpg', caption: 'Gallery Image 45' },
+        { src: 'IMG_20250926_190955_149.jpg', caption: 'Gallery Image 46' },
+        { src: 'IMG_20250926_190955_078.jpg', caption: 'Gallery Image 47' },
+        { src: 'gIMG_20250926_190954_977.jpg', caption: 'Gallery Image 48' },
+        { src: 'IMG_20250926_190954_787.jpg', caption: 'Gallery Image 49' },
+        { src: 'IMG_20250926_190948_019.jpg', caption: 'Gallery Image 50' },
+        { src: 'IMG_20250926_190947_925.jpg', caption: 'Gallery Image 51' },
+        { src: 'IMG_20250926_190947_765.jpg', caption: 'Gallery Image 52' },
+        { src: 'IMG_20250926_190947_719.jpg', caption: 'Gallery Image 53' },
+        { src: 'IMG_20250926_190947_684.jpg', caption: 'Gallery Image 54' },
+        { src: 'IMG_20250926_190947_631.jpg', caption: 'Gallery Image 55' },
+        { src: 'IMG_20250926_190947_572.jpg', caption: 'Gallery Image 56' },
+        { src: 'IMG_20250926_190947_523.jpg', caption: 'Gallery Image 57' },
+        { src: 'IMG_20250926_190947_442.jpg', caption: 'Gallery Image 58' },
+        { src: 'IMG_20250926_190947_293.jpg', caption: 'Gallery Image 59' },
+        { src: 'IMG_20250926_010331_116.jpg', caption: 'Gallery Image 60' },
+        { src: 'IMG_20250926_010330_952.jpg', caption: 'Gallery Image 61' },
+        { src: 'IMG_20250926_010330_821.jpg', caption: 'Gallery Image 62' },
+        { src: 'IMG_20250926_010330_605.jpg', caption: 'Gallery Image 63' },
+        { src: 'IMG_20250926_010330_554.jpg', caption: 'Gallery Image 64' },
+        { src: 'IMG_20250926_010330_403.jpg', caption: 'Gallery Image 65' },
+        { src: 'IMG_20250926_010330_391.jpg', caption: 'Gallery Image 66' },
+        { src: 'IMG_20250926_010322_979.jpg', caption: 'Gallery Image 67' },
+        { src: 'IMG_20250926_010322_926.jpg', caption: 'Gallery Image 68' },
+        { src: 'IMG_20250926_010322_880.jpg', caption: 'Gallery Image 69' },
+        { src: 'IMG_20250926_010322_615.jpg', caption: 'Gallery Image 70' },
+        { src: 'IMG_20250926_010322_598.jpg', caption: 'Gallery Image 71' },
+        { src: 'IMG_20250926_010322_595.jpg', caption: 'Gallery Image 72' },
+        { src: 'IMG_20250926_010322_568.jpg', caption: 'Gallery Image 73' },
+        { src: 'IMG_20250926_010322_513.jpg', caption: 'Gallery Image 74' },
+        { src: 'IMG_20250926_010322_196.jpg', caption: 'Gallery Image 75' },
+        { src: 'IMG_20250926_010322_106.jpg', caption: 'Gallery Image 76' },
+        { src: 'IMG_20250926_010317_127.jpg', caption: 'Gallery Image 77' },
+        { src: 'IMG_20250926_010316_993.jpg', caption: 'Gallery Image 78' },
+        { src: 'IMG_20250926_010316_983.jpg', caption: 'Gallery Image 79' },
+        { src: 'IMG_20250926_010316_903.jpg', caption: 'Gallery Image 80' },
+        { src: 'IMG_20250926_010316_511.jpg', caption: 'Gallery Image 81' },
+        { src: 'gallery/22.jpg', caption: 'Gallery Image 82' },
+        { src: 'gallery/23.jpg', caption: 'Gallery Image 83' },
+        { src: 'gallery/24.jpg', caption: 'Gallery Image 84' },
+        { src: 'gallery/25.jpg', caption: 'Gallery Image 85' },
+        { src: 'gallery/26.jpg', caption: 'Gallery Image 86' },
+        { src: 'gallery/27.jpg', caption: 'Gallery Image 87' },
+        { src: 'gallery/3.jpg', caption: 'Gallery Image 88' },
+        { src: 'gallery/4.jpg', caption: 'Gallery Image 89' },
+        { src: 'gallery/6.jpg', caption: 'Gallery Image 90' },
+        { src: 'gallery/5.jpg', caption: 'Gallery Image 91' },
+        { src: 'gallery/7.jpg', caption: 'Gallery Image 92' },
+        { src: 'gallery/8.jpg', caption: 'Gallery Image 93' },
+        { src: 'gallery/9.jpg', caption: 'Gallery Image 94' },
+    ];
+    
+    // Initialize gallery
+    initGallery(galleryImages);
+});
+
+function initGallery(images) {
+    const galleryMarquee = document.getElementById('galleryMarquee');
+    const galleryModal = document.getElementById('galleryModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalCaption = document.getElementById('modalCaption');
+    const modalClose = document.querySelector('.gallery-modal .modal-close');
+    const modalPrevBtn = document.getElementById('modalPrevBtn');
+    const modalNextBtn = document.getElementById('modalNextBtn');
+    
+    let currentImageIndex = 0;
+    let isMarqueePaused = false;
+    
+    // Duplicate images for seamless marquee
+    const duplicatedImages = [...images, ...images];
+    
+    // Create gallery items
+    duplicatedImages.forEach((image, index) => {
+        const galleryItem = document.createElement('div');
+        galleryItem.className = 'gallery-item';
+        galleryItem.setAttribute('data-index', index % images.length);
+        
+        const img = document.createElement('img');
+        img.src = image.src;
+        img.alt = image.caption;
+        
+        galleryItem.appendChild(img);
+        galleryMarquee.appendChild(galleryItem);
+        
+        // Add click event to gallery item
+        galleryItem.addEventListener('click', () => {
+            currentImageIndex = index % images.length;
+            openModal();
+        });
+        
+        // Add hover events to pause/resume marquee
+        galleryItem.addEventListener('mouseenter', () => {
+            pauseMarquee();
+        });
+        
+        galleryItem.addEventListener('mouseleave', () => {
+            if (!isMarqueePaused) {
+                resumeMarquee();
+            }
+        });
+    });
+    
+    // Pause marquee
+    function pauseMarquee() {
+        galleryMarquee.classList.add('paused');
+    }
+    
+    // Resume marquee
+    function resumeMarquee() {
+        galleryMarquee.classList.remove('paused');
+    }
+    
+    // Toggle marquee on click
+    galleryMarquee.addEventListener('click', (e) => {
+        if (e.target.closest('.gallery-item')) return; // Skip if clicking on an item
+        
+        isMarqueePaused = !isMarqueePaused;
+        if (isMarqueePaused) {
+            pauseMarquee();
+        } else {
+            resumeMarquee();
+        }
+    });
+    
+    // Open modal
+    function openModal() {
+        updateModalImage();
+        galleryModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    // Close modal
+    function closeModal() {
+        galleryModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+    
+    // Update modal image
+    function updateModalImage() {
+        modalImage.src = images[currentImageIndex].src;
+        modalCaption.textContent = images[currentImageIndex].caption;
+    }
+    
+    // Navigate to previous image
+    function prevImage() {
+        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+        updateModalImage();
+    }
+    
+    // Navigate to next image
+    function nextImage() {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        updateModalImage();
+    }
+    
+    // Event listeners
+    modalClose.addEventListener('click', closeModal);
+    modalPrevBtn.addEventListener('click', prevImage);
+    modalNextBtn.addEventListener('click', nextImage);
+    
+    // Close modal when clicking outside the image
+    galleryModal.addEventListener('click', function(e) {
+        if (e.target === galleryModal) {
+            closeModal();
+        }
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (galleryModal.classList.contains('active')) {
+            if (e.key === 'Escape') {
+                closeModal();
+            } else if (e.key === 'ArrowLeft') {
+                prevImage();
+            } else if (e.key === 'ArrowRight') {
+                nextImage();
+            }
+        }
+    });
+}
+</script>
+
+
+    <!-- Certificate Section -->
+    <section id="certificates">
+        <h2 class="section-title" data-aos="fade-up">My Certificates</h2>
+        <div class="certificates-grid">
+            <!-- Certificate 1 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="certificate-image">
+                    <img src="14-2.jpg" alt="webinar laluan kerjaya dalam bidang Cybersecurity">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Webinar NADI X CyberSecurity</h3>
+                    <p class="certificate-description">Webinar: laluan pembelajaran untuk kerjaya dalam bidang CyberSecurity</p>
+                    <p class="certificate-date">14.02.2025</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 2 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="150">
+                <div class="certificate-image">
+                    <img src="14-3.jpg" alt="Sijil pencapaian SQL FS4A">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Future Skill For All</h3>
+                    <p class="certificate-description">Pengajaran Siri SQL FS4A</p>
+                    <p class="certificate-date">14.03.2025</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 3 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="certificate-image">
+                    <img src="15-3.jpg" alt="Sijil pencapaian Python FS4A">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Future Skill For All</h3>
+                    <p class="certificate-description">Pengajaran Siri Python FS4A</p>
+                    <p class="certificate-date">15.03.2025</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 4 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="250">
+                <div class="certificate-image">
+                    <img src="6-5.jpg" alt="HTML Certificate">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Future Skill For All</h3>
+                    <p class="certificate-description">>Pengajaran Siri HTML FS4A</p>
+                    <p class="certificate-date">06.05.2025</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 5 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="certificate-image">
+                    <img src="penyertaan28-6.jpg" alt="CTF NXCS Certificate">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">CTF NADI X CyberSecurity</h3>
+                    <p class="certificate-description">Sijil pencapaian naib johan CTF NADI X CyberSecurity peringkat kelayakan cohort 1</p>
+                    <p class="certificate-date">28.06.2025</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 6 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="certificate-image">
+                    <img src="pencapaian28-6.jpg" alt="UI/UX Design Certificate">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">CTF NADI X CyberSecurity</h3>
+                    <p class="certificate-description">Sijil penyertaan CTF NADI X CyberSecurity peringkat kelayakan cohort 1</p>
+                    <p class="certificate-date">28.06.2025</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 7 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="150">
+                <div class="certificate-image">
+                    <img src="2025-7-10.png" alt="">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Webinar NADI X CyberSecurity</h3>
+                    <p class="certificate-description">Webinar: Dari Serangan Siber Ke Pemulihan</p>
+                     <p class="certificate-description">Asas Tindak Balas Insiden & Forensik Digital</p>
+                    <p class="certificate-date">10.07.2025</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 8 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="certificate-image">
+                    <img src="24-7.png" alt="">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Webinar NADI X CyberSecurity</h3>
+                    <p class="certificate-description">Webinar: Keselamatan Akaun Media Sosial</p>
+                     <p class="certificate-description">Bagaimana Phising Boleh Mengambil Alih Akaun Anda?</p>
+                    <p class="certificate-date">24.07.2025</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 9 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="250">
+                <div class="certificate-image">
+                    <img src="2025-8-14 .png" alt="">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Webinar NADI X CyberSecurity</h3>
+                   <p class="certificate-description">Webinar: Selamatkah Telefon Anda Daripada Ancaman</p>
+                    <p class="certificate-date">14.08.2025</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 10 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="certificate-image">
+                    <img src="28-8.png" alt="">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Webinar NADI X CyberSecurity</h3>
+                   <p class="certificate-description">Webinar: Kebenaran Menakutkan Disebalik Dark Web</p>
+                    <p class="certificate-date">28.08.2025</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 11 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="certificate-image">
+                    <img src="18-9.png" alt="">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">Webinar NADI X CyberSecurity</h3>
+                   <p class="certificate-description">Webinar Sim Swap: Ancaman Siber Kepada Usahawan Slot 1</p>
+                    <p class="certificate-date">18.09.2025</p>
+                </div>
+            </div>
+            
+            <!-- Certificate 12 -->
+            <div class="certificate-item" data-aos="fade-up" data-aos-delay="150">
+                <div class="certificate-image">
+                    <img src="IMG-20250926-WA0087.jpeg" alt="">
+                </div>
+                <div class="certificate-content">
+                    <h3 class="certificate-title">CTF NADI X CYberSecurity</h3>
+                    <p class="certificate-description">Sijil penyertaan dan pencapaian naib johan CTF NADI X CyberSecurity peringkat akhir cohort 1</p>
+                    <p class="certificate-date">25.09.2025</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificate Modal -->
+    <div class="certificate-modal" id="certificateModal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <img id="modalImage" src="" alt="Certificate">
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title" data-aos="fade-up">Contact Me</h2>
+        <div class="contact-content">
+            <p class="contact-text" data-aos="fade-up">Jika anda ingin menghubungi saya,Boleh hubungi saya di nombor di bawah melalui Whatsapp.</p>
+            <div class="contact-info" data-aos="fade-up">
+                <div class="contact-details">
+                    <div class="contact-phone" data-aos="zoom-in">
+                        <a href="https://wa.link/4ps6ha" style="text-decoration: none; color: white;"><i class="fab fa-whatsapp"></i>
+                        <span>Klik Disini!</span></a>
+                    </div>
+                    <div class="contact-tiktok" data-aos="zoom-in" data-aos-delay="100">
+                        <p>Atau boleh Follow saya di TikTok: <a href="https://www.tiktok.com/@fizam.dev" target="_blank">@fizam.dev</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://github.com/Fizam-dev" class="social-link" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.tiktok.com/@fizam.dev" class="social-link" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.instagram.com/fizam.dev/" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+            <nav class="footer-nav">
+                <ul class="footer-menu">
+                    <li class="footer-item"><a href="#intro">Home</a></li>
+                    <li class="footer-item"><a href="#about">About</a></li>
+                    <li class="footer-item"><a href="#gallery">Gallery</a></li>
+                    <li class="footer-item"><a href="#certificates">Certificate</a></li>
+                    <li class="footer-item"><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <p class="copyright"><strong style="color: white;">FizamCyberSec_21 | HackDev</strong></p>
+        </div>
+    </footer>
+
+    <!-- AOS Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Loading Screen
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            const percentage = document.getElementById('percentage');
+            
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.floor(Math.random() * 10) + 1;
+                if (progress > 100) progress = 100;
+                percentage.textContent = `${progress}%`;
+                
+                if (progress === 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        loadingScreen.style.opacity = '0';
+                        setTimeout(() => {
+                            loadingScreen.style.display = 'none';
+                        }, 500);
+                    }, 500);
+                }
+            }, 100);
+        });
+
+        // Typewriter Effect
+        const typewriterText = document.getElementById('typewriter');
+        const texts = ['Front-end Developer', 'CyberSecurity Student', 'Web Designer', 'science computer student', 'CTF Player'];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 100;
+
+        function typeWriter() {
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                typewriterText.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+                typingSpeed = 50;
+            } else {
+                typewriterText.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+                typingSpeed = 100;
+            }
+            
+            if (!isDeleting && charIndex === currentText.length) {
+                isDeleting = true;
+                typingSpeed = 1500; // Pause at the end
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                typingSpeed = 500; // Pause before starting next text
+            }
+            
+            setTimeout(typeWriter, typingSpeed);
+        }
+
+        // Start the typewriter effect after loading
+        setTimeout(typeWriter, 1500);
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Hamburger Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
+
+        // Certificate Modal
+        const certificateItems = document.querySelectorAll('.certificate-item');
+        const certificateModal = document.getElementById('certificateModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalClose = document.querySelector('.modal-close');
+
+        certificateItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const imgSrc = this.querySelector('img').src;
+                modalImage.src = imgSrc;
+                certificateModal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            });
+        });
+
+        modalClose.addEventListener('click', function() {
+            certificateModal.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Enable scrolling
+        });
+
+        // Close modal when clicking outside the image
+        certificateModal.addEventListener('click', function(e) {
+            if (e.target === certificateModal) {
+                certificateModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
